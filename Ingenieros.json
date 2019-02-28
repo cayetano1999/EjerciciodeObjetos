@@ -1,0 +1,7 @@
+[
+
+    {"Nombre": "Josue Alexander Cayetano", "Edad": 49, "Experiencia": "21 años", "Lenguaje": "C#", "Base_Datos": "SQL Server"},
+    {"Nombre": "Claudis German", "Edad": 39, "Experiencia": "12 años", "Lenguaje": "C++", "Base_Datos": "Oracle"},
+    {"Nombre": "Orbis Alonzo", "Edad": 29, "Experiencia": "12 años", "Lenguaje": "C", "Base_Datos": "SQL Server"}
+
+]

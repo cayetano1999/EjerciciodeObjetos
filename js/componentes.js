@@ -2,11 +2,16 @@ Vue.component('Padre',{
 
 template: //html
 `
+<div>
 <div class="alert bg-danger text-white">
-    <h4>Programadores</h4>
-    <tabla :Programador="Programador"></tabla>
+    <h4>{{titulo}}</h4>
+    <tabla :Objeto="Objeto" :File="File" :Titulo="Titulo"></tabla>
+    
+</div>
+
 
 </div>
+
 
 `,
 
@@ -14,32 +19,15 @@ data(){
 
     return {
 
-        Programador:[
-            {Nombre: 'Josue Alexander Cayetano',
-            Edad : '18',
-            Experiencia: '2 Años',
-            Lenguaje: 'C# y PHP',
-            DB: 'SQL Server'},
-
-            {Nombre: 'Orbiz Alonzo Gutierrez',
-            Edad : '18',
-            Experiencia: '2 Años',
-            Lenguaje: 'C# y PHP',
-            DB: 'SQL Server'},
-
-            {Nombre: 'Gabriel Solano Mota',
-            Edad : '18',
-            Experiencia: '2 Años',
-            Lenguaje: 'C# y PHP',
-            DB: 'SQL Server'},
-
-
-        ]
+        Objeto:[{}],
+        Titulo: this.titulo,
+        File: this.file,
+         
 
     }
 
-}
-
+},
+props:['titulo','file']
 
 });
 
@@ -62,7 +50,7 @@ Vue.component('tabla',{
                 </thead>
 
                 <tbody class="text-white">
-                    <tr v-for="(item, index) of Programador">
+                    <tr v-for="(item, index) of Objeto">
 
                         <td>{{index}}</td>
                         <td>{{item.Nombre}}</td>
@@ -73,12 +61,13 @@ Vue.component('tabla',{
                         
                         <td>{{item.Lenguaje}}</td>
                         
-                        <td>{{item.DB}}</td>    
+                        <td>{{item.Base_Datos}}</td>    
                         
                     </tr>
                     <div class="alert bg-white rounded col-sm-12 text-dark">
 
-                        <h5>Hay {{Programador.length}} Programadores</h5>
+                        <h5>Hay {{Titulo }}</h5>
+                        <button @click="GetObj(File)" class="btn btn-warning">Get</button>
                         
                         
                         
@@ -94,20 +83,30 @@ Vue.component('tabla',{
 
 
     `,
-    props:['Programador'],
+    props:['Objeto','File', 'Titulo'],
 
     computed:{
 
         Ciclo(){
                 var propiedades = []
-                for (var key2 in this.Programador[0]) {    
+                for (var key2 in this.Objeto[0]) {    
                  
                   propiedades.push(key2)
                   
                 }
                 return propiedades;
-        }
+        },
 
+        ...Vuex.mapState(['Objeto'])
+
+    },
+
+
+    methods:{
+    
+        ...Vuex.mapActions(['GetObj'])
+    
+    
     }
 
 
